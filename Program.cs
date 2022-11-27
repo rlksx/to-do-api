@@ -1,6 +1,11 @@
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
+using to_do_api.Data;
 
-app.MapGet("/", () => "Hello World!");
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddControllers(); //=> adicionando controller externas;
+builder.Services.AddDbContext<AppDbContext>(); //=> adicionando AppDbContext como serviço;
+
+var app = builder.Build();
+app.MapControllers(); //=> mapeando controller do projeto (tudo que herde de Controller e Controller.Base)
+
 
 app.Run();
